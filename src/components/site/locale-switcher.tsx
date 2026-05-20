@@ -23,15 +23,21 @@ export function LocaleSwitcher({
   locale,
   pathname,
   placement = "header",
+  open: controlledOpen,
+  onOpenChange,
 }: {
   locale: Locale;
   pathname: string;
   placement?: "header";
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }) {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const pathWithoutLocale = useMemo(() => stripLocalePrefix(pathname), [pathname]);
+  const open = controlledOpen ?? uncontrolledOpen;
+  const setOpen = onOpenChange ?? setUncontrolledOpen;
 
   const goSystemLocale = () => {
     const targetLocale = resolveSystemLocale(window.navigator.language);
@@ -46,7 +52,7 @@ export function LocaleSwitcher({
         aria-haspopup="menu"
         aria-expanded={open}
         aria-label="Change language"
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => setOpen(!open)}
         className="motion-surface inline-flex items-center justify-center border border-[var(--page-divider)] bg-white/92 text-[var(--page-ink)] hover:border-neutral-400 hover:bg-neutral-50"
         style={{ width: "var(--header-control-size)", height: "var(--header-control-size)" }}
       >
@@ -73,7 +79,7 @@ export function LocaleSwitcher({
                   key={entry.key}
                   type="button"
                   onClick={goSystemLocale}
-                  className="motion-surface flex w-full items-center justify-between px-4 py-3 text-left text-[13px] leading-none font-medium text-[var(--page-ink)] hover:bg-neutral-100"
+                  className="motion-surface flex min-h-11 w-full items-center justify-between px-4 py-3 text-left text-[13px] leading-none font-medium text-[var(--page-ink)] hover:bg-neutral-100"
                 >
                   <span>{entry.label}</span>
                   <span className="type-meta text-neutral-500 uppercase">Auto</span>
@@ -85,7 +91,7 @@ export function LocaleSwitcher({
                   onClick={() => setOpen(false)}
                   aria-current={entry.key === locale ? "page" : undefined}
                   className={cn(
-                    "motion-surface flex items-center justify-between px-4 py-3 text-[13px] leading-none font-medium hover:bg-neutral-100",
+                    "motion-surface flex min-h-11 items-center justify-between px-4 py-3 text-[13px] leading-none font-medium hover:bg-neutral-100",
                     entry.key === locale ? "bg-neutral-100 text-[var(--page-ink)]" : "text-[var(--page-ink-soft)]",
                   )}
                 >

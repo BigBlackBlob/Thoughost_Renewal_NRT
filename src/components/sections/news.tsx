@@ -75,7 +75,7 @@ export function NewsSection({
         <FadeIn className="flex justify-end" delay={0.08} style={{ marginTop: "25.6px" }}>
           <Link
             href={withLocale(locale, moreHref)}
-            className="inline-flex items-center gap-[4px] uppercase text-[var(--page-ink)] motion-surface hover:text-neutral-500"
+            className="inline-flex min-h-11 items-center gap-[4px] uppercase text-[var(--page-ink)] motion-surface hover:text-neutral-500"
             style={{ fontSize: "13px", lineHeight: 1, fontWeight: 700, letterSpacing: "0.025em" }}
           >
             <span>{moreLabel}</span>

@@ -383,6 +383,13 @@ body {
     text-decoration-color var(--motion-hover) var(--motion-ease-out);
 }
 
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid #f04034;
+  outline-offset: 3px;
+}
+
 .motion-overlay {
   transition:
     opacity var(--motion-base) var(--motion-ease-emphasized),
@@ -512,6 +519,12 @@ img {
 
 .hero-indicators > div {
   gap: 6px;
+}
+
+.hero-indicator-button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
 }
 
 .hero-track-viewport {
@@ -1154,7 +1167,7 @@ img {
     --mobile-header-height: 64px;
     --mobile-header-pad-x: 16px;
     --mobile-header-pad-block: 10px;
-    --header-control-size: 36px;
+    --header-control-size: 44px;
     --header-logo-height: 26px;
     --news-section-top: var(--mobile-first-section-overlap-gap);
     --releases-section-top: 26px;
@@ -1169,7 +1182,7 @@ img {
   }
 
   .hero-indicators > div {
-    gap: var(--hero-mobile-indicator-gap);
+    gap: 0;
   }
 
   .hero-progress-track {

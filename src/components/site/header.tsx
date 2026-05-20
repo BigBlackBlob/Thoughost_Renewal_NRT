@@ -25,6 +25,7 @@ export function SiteHeader({
   socialLinks: SocialIconLink[];
 }) {
   const [open, setOpen] = useState(false);
+  const [languageOpen, setLanguageOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const isHomeRoute = isSiteHomePath(pathname, locale);
 
@@ -77,11 +78,31 @@ export function SiteHeader({
             <div className="hidden lg:block">
               <SocialLinks links={socialLinks} />
             </div>
-            <LocaleSwitcher locale={locale} pathname={pathname} placement="header" />
+            <LocaleSwitcher
+              locale={locale}
+              pathname={pathname}
+              placement="header"
+              open={languageOpen}
+              onOpenChange={(nextOpen) => {
+                setLanguageOpen(nextOpen);
+                if (nextOpen) {
+                  setOpen(false);
+                }
+              }}
+            />
             <button
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}
-              onClick={() => setOpen((value) => !value)}
+              onClick={() => {
+                setOpen((value) => {
+                  const nextOpen = !value;
+                  if (nextOpen) {
+                    setLanguageOpen(false);
+                  }
+
+                  return nextOpen;
+                });
+              }}
               className="flex items-center justify-center border border-[var(--page-divider)] bg-white/92 motion-surface hover:border-neutral-400 hover:bg-neutral-50 lg:hidden"
               style={{ width: "var(--header-control-size)", height: "var(--header-control-size)" }}
             >
@@ -144,7 +165,10 @@ export function SiteHeader({
                       href={href}
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noreferrer" : undefined}
-                      onClick={() => setOpen(false)}
+                      onClick={() => {
+                        setOpen(false);
+                        setLanguageOpen(false);
+                      }}
                       style={item.key === "project" ? { color: "#f04034" } : undefined}
                       className={cn(
                         "block border-b border-neutral-100 py-4 text-[12px] leading-none font-semibold tracking-[0.05em] text-[var(--page-ink)] uppercase motion-link hover:text-neutral-500",

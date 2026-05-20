@@ -60,7 +60,7 @@ export function SiteFooter({
                   <Link
                     key={item.key}
                     href={withLocale(locale, item.href)}
-                    className="motion-link block text-white hover:text-neutral-300"
+                    className="motion-link flex min-h-11 items-center text-white hover:text-neutral-300"
                     style={{ fontSize: "var(--footer-nav-size)", lineHeight: 1.45, fontWeight: 600, letterSpacing: "-0.01em" }}
                   >
                     {item.label}
@@ -71,7 +71,7 @@ export function SiteFooter({
                 {blackHoleLink ? (
                   <Link
                     href={withLocale(locale, blackHoleLink.href)}
-                  className="motion-link block text-white hover:text-neutral-300"
+                  className="motion-link flex min-h-11 items-center text-white hover:text-neutral-300"
                     style={{ fontSize: "var(--footer-nav-size)", lineHeight: 1.45, fontWeight: 600, letterSpacing: "-0.01em" }}
                   >
                     {blackHoleLink.label}
@@ -97,7 +97,7 @@ export function SiteFooter({
               </span>
               <a
                 href={`mailto:${contactEmail}`}
-                className="motion-link col-start-2 block text-[var(--footer-muted)] visited:text-[var(--footer-muted)] hover:text-white"
+                className="motion-link col-start-2 flex min-h-11 items-center text-[var(--footer-muted)] visited:text-[var(--footer-muted)] hover:text-white"
                 style={{ color: "var(--footer-muted)", fontSize: "var(--footer-email-size)", lineHeight: 1.2, fontWeight: 500 }}
               >
                 {contactEmail}
@@ -108,7 +108,7 @@ export function SiteFooter({
               <span className="text-[var(--footer-muted)]" style={{ fontSize: "var(--footer-nav-size)", lineHeight: 1.45, fontWeight: 600 }}>
                 {followUsLabel}
               </span>
-              <div className="col-start-2 flex h-[36px] items-center gap-[var(--footer-social-gap)]">
+              <div className="col-start-2 flex min-h-11 items-center gap-[var(--footer-social-gap)]">
                 {socialLinks.map((item) => (
                   <Link
                     key={item.platform}
@@ -116,8 +116,8 @@ export function SiteFooter({
                     target="_blank"
                     rel="noreferrer"
                     aria-label={item.label}
-                    className="motion-surface inline-flex items-center justify-center hover:opacity-88"
-                    style={{ width: "var(--footer-icon-size)", height: "var(--footer-icon-size)", backgroundColor: "var(--footer-icon-bg)" }}
+                    className="motion-surface inline-flex min-h-11 min-w-11 items-center justify-center hover:opacity-88"
+                    style={{ backgroundColor: "var(--footer-icon-bg)" }}
                   >
                     <Image
                       src={withBasePathAsset(`/icons/social/${item.iconKey}.svg`)}

@@ -6,7 +6,7 @@ import type { Locale } from "@/types/site";
 
 export function SiteLogo({ locale }: { locale: Locale }) {
   return (
-    <Link href={`/${locale}`} aria-label="Thoughost home" className="inline-flex items-center">
+    <Link href={`/${locale}`} aria-label="Thoughost home" className="inline-flex min-h-11 items-center">
       <Image
         src={withBasePathAsset("/thoughost-logo.svg")}
         alt="Thoughost"

@@ -935,7 +935,7 @@ function HeroIndicators({
               aria-current={isActive ? "true" : undefined}
               onClick={() => onSelect(slideIndex)}
               disabled={isAnimating}
-              className="group flex items-center disabled:cursor-default"
+              className="hero-indicator-button group flex items-center justify-center disabled:cursor-default"
             >
               <HeroProgressBar active={isActive} progress={isActive ? progressValue : 0} />
             </button>
