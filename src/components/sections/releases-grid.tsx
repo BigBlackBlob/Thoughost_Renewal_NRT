@@ -22,7 +22,7 @@ export function ReleasesGridSection({
   return (
     <section
       id="releases"
-      className="discography-wall bg-[#f2f2f2] pb-[50px] md:pb-[56px]"
+      className="discography-wall bg-white pb-[78px] md:pb-[96px]"
       style={{ paddingTop: compactTop ? "0px" : "var(--releases-section-top)" }}
     >
       <div className="site-nav-frame">
@@ -30,13 +30,13 @@ export function ReleasesGridSection({
           <FadeIn y={12} amount={0.12}>
             <h2
               className="text-[#101010]"
-              style={{ fontSize: "var(--releases-heading-size)", lineHeight: 1, fontWeight: 600, letterSpacing: "-0.024em" }}
+              style={{ fontSize: "var(--releases-heading-size)", lineHeight: 1, fontWeight: 700, letterSpacing: "-0.018em" }}
             >
               {title}
             </h2>
           </FadeIn>
         ) : null}
-        <div className={title ? "mt-[18px]" : ""}>
+        <div className={title ? "mt-[34px]" : ""}>
           <div className="discography-cover-grid grid justify-between sm:grid-cols-3 lg:grid-cols-5" style={{ columnGap: "var(--release-cover-gap)" }}>
             {items.map((item, index) => (
               <FadeIn key={item.slug} delay={Math.min(index * 0.028, 0.16)} y={14} amount={0.08}>

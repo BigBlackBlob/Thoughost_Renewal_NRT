@@ -8,16 +8,16 @@ export function PageIntro({
   body?: string;
 }) {
   return (
-    <section className="border-b border-neutral-200 bg-white">
-      <div className="site-nav-frame py-12 lg:py-16">
+    <section className="bg-white">
+      <div className="site-nav-frame py-28 md:py-32 lg:py-40">
         <FadeIn y={12} amount={0.12}>
-          <h1 className="type-page-title max-w-[820px] text-[#101010]">
+          <h1 className="type-section-title max-w-[820px] text-[#101010]">
             {title}
           </h1>
         </FadeIn>
         {body ? (
           <FadeIn delay={0.05} y={8} amount={0.12}>
-            <p className="type-summary mt-5 max-w-[760px]">{body}</p>
+            <p className="mt-6 max-w-[520px] text-[10.5px] leading-[1.8] text-neutral-500">{body}</p>
           </FadeIn>
         ) : null}
       </div>

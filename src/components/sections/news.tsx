@@ -21,19 +21,19 @@ export function NewsSection({
   items: NewsCardItem[];
 }) {
   return (
-    <section id="news" className="bg-white" style={{ paddingTop: "var(--news-section-top)", paddingBottom: "45.4px" }}>
+    <section id="news" className="bg-white" style={{ paddingTop: "var(--news-section-top)", paddingBottom: "72px" }}>
       <div className="site-nav-frame">
         <FadeIn y={12} amount={0.12}>
           <h2
             className="text-[#101010]"
-            style={{ margin: 0, fontSize: "var(--news-heading-size)", lineHeight: "var(--news-heading-line)", fontWeight: 600, letterSpacing: "-0.024em" }}
+            style={{ margin: 0, fontSize: "var(--news-heading-size)", lineHeight: "var(--news-heading-line)", fontWeight: 700, letterSpacing: "-0.018em" }}
           >
             {title}
           </h2>
         </FadeIn>
         <div style={{ marginTop: "var(--news-list-gap-top)" }}>
           <StaggerGroup
-            className="grid gap-y-0 md:grid-cols-2 md:gap-x-[16px]"
+            className="grid gap-y-0 md:grid-cols-2 md:gap-x-[84px]"
             density="tight"
             amount={0.06}
           >
@@ -72,7 +72,7 @@ export function NewsSection({
             ))}
           </StaggerGroup>
         </div>
-        <FadeIn className="flex justify-end" delay={0.08} style={{ marginTop: "25.6px" }}>
+        <FadeIn className="flex justify-end" delay={0.08} style={{ marginTop: "18px" }}>
           <Link
             href={withLocale(locale, moreHref)}
             className="inline-flex min-h-11 items-center gap-[4px] uppercase text-[var(--page-ink)] motion-surface hover:text-neutral-500"

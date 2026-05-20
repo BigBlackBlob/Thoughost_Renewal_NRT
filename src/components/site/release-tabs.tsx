@@ -30,7 +30,7 @@ export function ReleaseTabs({
   }, [active, items]);
 
   return (
-    <div className="discography-shell bg-[#f2f2f2]">
+    <div className="discography-shell bg-white">
       <div className="site-nav-frame">
         <FadeIn y={10} amount={0.12}>
           <div className="discography-filter-rail">

@@ -17,21 +17,21 @@
   --hero-center-max: calc(100vw - (var(--hero-side-width) * 2) - (var(--hero-pane-gap) * 2));
   --hero-side-width: clamp(320px, 21.09375vw, 540px);
   --hero-pane-gap: clamp(4px, 0.46875vw, 12px);
-  --header-height: clamp(54px, 3.359375vw, 86px);
+  --header-height: clamp(40px, 2.34375vw, 60px);
   --header-edge-inline: clamp(24px, 21.484375vw, 550px);
-  --header-edge-block: clamp(10px, 0.9375vw, 24px);
+  --header-edge-block: clamp(5px, 0.390625vw, 10px);
   --header-control-size: clamp(32px, 1.40625vw, 36px);
-  --header-logo-height: clamp(26px, 1.25vw, 32px);
+  --header-logo-height: clamp(14px, 0.78125vw, 20px);
   --header-nav-gap: clamp(24px, 1.5625vw, 40px);
-  --header-nav-text-size: clamp(11.8px, 0.7864583333vw, 15.1px);
+  --header-nav-text-size: clamp(8px, 0.46875vw, 12px);
   --header-cluster-gap: clamp(10px, 0.46875vw, 12px);
   --header-divider-height: clamp(15px, 0.9765625vw, 25px);
   --header-social-gap: clamp(10px, 1.015625vw, 26px);
   --header-social-icon-size: clamp(10px, 0.46875vw, 12px);
   --header-soundcloud-icon-size: clamp(12px, 0.5729166667vw, 14px);
-  --hero-height-desktop: clamp(500px, 25.3125vw, 648px);
-  --hero-height-tablet: 430px;
-  --hero-height-mobile: 340px;
+  --hero-height-desktop: clamp(318px, 20.3125vw, 520px);
+  --hero-height-tablet: 360px;
+  --hero-height-mobile: 318px;
   --hero-mobile-height: var(--hero-height-mobile);
   --hero-mobile-header-gap: 10px;
   --hero-mobile-content-pad-x: 16px;
@@ -48,36 +48,36 @@
   --mobile-header-height: var(--header-height);
   --mobile-header-pad-x: 0px;
   --mobile-header-pad-block: var(--header-edge-block);
-  --hero-center-pad-top: clamp(34px, 2.734375vw, 70px);
+  --hero-center-pad-top: clamp(22px, 1.875vw, 48px);
   --hero-center-pad-right: clamp(20px, 2.109375vw, 54px);
   --hero-center-pad-bottom: clamp(20px, 2.109375vw, 54px);
   --hero-center-pad-left: clamp(20px, 2.109375vw, 54px);
-  --hero-title-size: clamp(34px, 3.125vw, 80px);
-  --hero-title-line-height: 0.78;
+  --hero-title-size: clamp(30px, 2.34375vw, 60px);
+  --hero-title-line-height: 0.82;
   --hero-subtitle-size: clamp(12px, 0.5078125vw, 13px);
-  --hero-cta-size: clamp(16px, 1.5625vw, 40px);
+  --hero-cta-size: clamp(15px, 1.171875vw, 30px);
   --hero-cta-line-height: 1;
   --hero-cta-box-width: clamp(104px, 8.671875vw, 222px);
   --hero-cta-box-height: clamp(16px, 1.09375vw, 28px);
   --hero-cta-pad-left: 0px;
   --hero-cta-pad-bottom: 0px;
-  --news-section-top: clamp(28px, 2.96875vw, 76px);
-  --news-heading-size: clamp(20px, 1.140625vw, 29.2px);
+  --news-section-top: clamp(72px, 7.03125vw, 180px);
+  --news-heading-size: clamp(14px, 0.625vw, 16px);
   --news-heading-line: 1;
-  --news-list-gap-top: 15px;
+  --news-list-gap-top: clamp(20px, 1.875vw, 48px);
   --news-item-gap-x: clamp(12px, 0.9375vw, 24px);
   --news-item-pad-y: clamp(13px, 0.9765625vw, 25px);
   --news-item-date-width: clamp(70px, 4.296875vw, 110px);
   --news-item-date-height: 22px;
   --news-item-title-size: clamp(15px, 0.78125vw, 20px);
   --news-item-date-size: clamp(13px, 0.68359375vw, 17.5px);
-  --releases-section-top: clamp(40px, 2.9296875vw, 75px);
-  --releases-heading-size: clamp(20px, 1.140625vw, 29.2px);
-  --release-cover-size: clamp(164px, 10.859375vw, 278px);
-  --release-cover-gap: clamp(4px, 1.015625vw, 26px);
+  --releases-section-top: clamp(54px, 4.6875vw, 120px);
+  --releases-heading-size: clamp(14px, 0.625vw, 16px);
+  --release-cover-size: clamp(146px, 8.984375vw, 230px);
+  --release-cover-gap: clamp(10px, 1.09375vw, 28px);
   --footer-muted: #909090;
-  --footer-nav-size: 17.2px;
-  --footer-email-size: 11.7px;
+  --footer-nav-size: 12px;
+  --footer-email-size: 10.5px;
   --footer-meta-size: clamp(10px, 0.45703125vw, 11.7px);
   --footer-icon-size: clamp(22px, 1.25vw, 32px);
   --footer-social-gap: clamp(10px, 0.6328125vw, 16.2px);
@@ -117,7 +117,7 @@
   --type-meta-size: 11px;
   --type-meta-weight: 500;
   --type-meta-tracking: 0.05em;
-  --type-section-title-size: 20px;
+  --type-section-title-size: 15px;
   --type-section-title-weight: 600;
   --type-page-title-size: 46px;
   --type-page-title-weight: 600;
@@ -145,6 +145,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 html[lang="zh"] {
@@ -161,6 +162,7 @@ body {
   background: #ffffff;
   color: var(--page-ink);
   font-family: var(--site-font-body);
+  overflow-x: clip;
 }
 
 .type-nav {
@@ -1040,7 +1042,7 @@ img {
     --hero-center-max: 100vw;
     --hero-side-width: 0vw;
     --hero-pane-gap: 0px;
-    --type-section-title-size: 18px;
+    --type-section-title-size: 15px;
     --type-page-title-size: 32px;
     --type-detail-title-size: 34px;
     --type-summary-size: 15px;
