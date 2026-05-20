@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+.codex/
+.codex-logs/
+.git/
+.vercel/
+coverage/
+build/
+dev.db
+*.log
+*.tsbuildinfo
+next-env.d.ts
+/*.png
