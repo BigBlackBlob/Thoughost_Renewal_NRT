@@ -1,4 +1,14 @@
 import { useEffect, useState } from 'react';
+import type { CSSProperties, MouseEvent } from 'react';
+import { useNavigate } from 'react-router';
+import { pagePath } from './i18n/locale';
+import type { Locale, SitePage } from './i18n/locale';
+import { updates, categories, prototypeCatalog } from './content/prototype';
+import { selectAlbums } from './content/catalog';
+import type { CategoryId } from './content/types';
+type NavigationEvent = MouseEvent<HTMLAnchorElement | HTMLButtonElement>;
+type NavigationProps = { onOpenDiscography: (event: NavigationEvent) => void; onOpenHomeSection: (event: NavigationEvent, hash: string) => void };
+type CanvasStyle = CSSProperties & { '--scale': number };
 import logo from './assets/thoughost.svg';
 import xLogo from './assets/x.svg';
 import soundcloudLogo from './assets/soundcloud.svg';
@@ -12,122 +22,7 @@ import paletteCover from './assets/albums/paletteofclouds.jpg';
 import thoughtsCover from './assets/albums/thoughts.jpg';
 import thoughts2Cover from './assets/albums/thoughts2.jpg';
 
-const updates = [
-  'NNNNNNNNNNuN',
-  'NNNNNNNNNNuN',
-  'NNNNNNNNNNuNN\nNNNNNNNNN',
-  'NNNNNNNNNNuN',
-];
-
-const categories = [
-  { id: 'all', label: 'ALL', display: 'ALL' },
-  { id: 'compilation-solo', label: 'COMPILATION\nSOLO', display: 'COMPILATION SOLO' },
-  { id: 'ep-single', label: 'EP\nSINGLE', display: 'EP SINGLE' },
-];
-
-const albums = [
-  {
-    id: 'thoughts-2',
-    title: 'thoughts 2',
-    categories: ['ep-single'],
-    releaseDate: '2026-04-20',
-    cover: thoughts2Cover,
-    href: '#thoughts-2',
-  },
-  {
-    id: '2000-invasion',
-    title: '2000% INVASION',
-    categories: ['compilation-solo'],
-    releaseDate: '2026-03-12',
-    cover: invasionCover,
-    href: '#2000-invasion',
-  },
-  {
-    id: 'moonshine-001',
-    title: 'MOONSHINE #001',
-    categories: ['ep-single'],
-    releaseDate: '2026-02-18',
-    cover: moonshineCover,
-    href: '#moonshine-001',
-  },
-  {
-    id: 'haru-no-owari',
-    title: '春ノ終焉',
-    categories: ['compilation-solo'],
-    releaseDate: '2026-01-10',
-    cover: kakushojoCover,
-    href: '#haru-no-owari',
-  },
-  {
-    id: 'asteria',
-    title: 'Asteria',
-    categories: ['compilation-solo'],
-    releaseDate: '2025-12-05',
-    cover: asteriaCover,
-    href: '#asteria',
-  },
-  {
-    id: 'thoughts',
-    title: 'thoughts',
-    categories: ['ep-single'],
-    releaseDate: '2025-10-26',
-    cover: thoughtsCover,
-    href: '#thoughts',
-  },
-  {
-    id: 'palette-of-clouds',
-    title: 'palette of clouds',
-    categories: ['compilation-solo'],
-    releaseDate: '2025-09-02',
-    cover: paletteCover,
-    href: '#palette-of-clouds',
-  },
-  {
-    id: 'kakusatsu-shoujo-3',
-    title: 'KAKUSATSU SHOUJO 3',
-    categories: ['ep-single'],
-    releaseDate: '2025-07-19',
-    cover: kakushojoCover,
-    href: '#kakusatsu-shoujo-3',
-  },
-  {
-    id: 'ephemanent',
-    title: 'Ephemanent',
-    categories: ['compilation-solo'],
-    releaseDate: '2025-04-21',
-    cover: ephemanentCover,
-    href: '#ephemanent',
-  },
-  {
-    id: 'sixteen-forty-eight',
-    title: '16:48',
-    categories: ['ep-single'],
-    releaseDate: '2025-02-08',
-    cover: invasionCover,
-    href: '#sixteen-forty-eight',
-  },
-  {
-    id: 'moonshine-alt',
-    title: 'MOONSHINE #001 - reprise',
-    categories: ['compilation-solo'],
-    releaseDate: '2024-11-16',
-    cover: moonshineCover,
-    href: '#moonshine-alt',
-  },
-  {
-    id: 'asteria-live',
-    title: 'Asteria live edit',
-    categories: ['ep-single'],
-    releaseDate: '2024-08-04',
-    cover: asteriaCover,
-    href: '#asteria-live',
-  },
-];
-
-const sortByNewest = (items) =>
-  [...items].sort((a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime());
-
-function Header({ onOpenDiscography, onOpenHomeSection }) {
+function Header({ onOpenDiscography, onOpenHomeSection }: NavigationProps) {
   return (
     <header className="site-header" id="about">
       <a href="#" aria-label="Thoughost home" onClick={(event) => onOpenHomeSection(event, '')}>
@@ -137,7 +32,6 @@ function Header({ onOpenDiscography, onOpenHomeSection }) {
         <button
           className="nav-about"
           onClick={(event) => onOpenHomeSection(event, '#about')}
-          onPointerDown={(event) => onOpenHomeSection(event, '#about')}
           type="button"
         >
           ABOUT
@@ -145,7 +39,6 @@ function Header({ onOpenDiscography, onOpenHomeSection }) {
         <button
           className="nav-news"
           onClick={(event) => onOpenHomeSection(event, '#news')}
-          onPointerDown={(event) => onOpenHomeSection(event, '#news')}
           type="button"
         >
           NEWS
@@ -153,7 +46,6 @@ function Header({ onOpenDiscography, onOpenHomeSection }) {
         <button
           className="nav-discography"
           onClick={onOpenDiscography}
-          onPointerDown={onOpenDiscography}
           type="button"
         >
           DISCOGRAPHY
@@ -161,7 +53,6 @@ function Header({ onOpenDiscography, onOpenHomeSection }) {
         <button
           className="nav-contact"
           onClick={(event) => onOpenHomeSection(event, '#contact')}
-          onPointerDown={(event) => onOpenHomeSection(event, '#contact')}
           type="button"
         >
           CONTACT
@@ -182,7 +73,7 @@ function Header({ onOpenDiscography, onOpenHomeSection }) {
   );
 }
 
-function Footer({ page = 'home' }) {
+function Footer({ page = 'home' }: { page?: SitePage }) {
   return (
     <footer className={`site-footer ${page === 'discography' ? 'discography-footer' : ''}`} id="contact">
       <div className="footer-rule" />
@@ -203,7 +94,7 @@ function Footer({ page = 'home' }) {
   );
 }
 
-function HomePage({ onOpenDiscography, onOpenHomeSection }) {
+function HomePage({ onOpenDiscography, onOpenHomeSection }: NavigationProps) {
   return (
     <>
       <Header onOpenDiscography={onOpenDiscography} onOpenHomeSection={onOpenHomeSection} />
@@ -249,7 +140,6 @@ function HomePage({ onOpenDiscography, onOpenHomeSection }) {
           href="#discography"
           aria-label="More discography"
           onClick={onOpenDiscography}
-          onPointerDown={onOpenDiscography}
         >
           <span>MORE</span>
         </a>
@@ -260,20 +150,16 @@ function HomePage({ onOpenDiscography, onOpenHomeSection }) {
   );
 }
 
-function DiscographyPage({ onOpenDiscography, onOpenHomeSection }) {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [activeAlbumId, setActiveAlbumId] = useState(albums[0].id);
+function DiscographyPage({ onOpenDiscography, onOpenHomeSection }: NavigationProps) {
+  const [selectedCategory, setSelectedCategory] = useState<CategoryId>('all');
+  const [activeAlbumId, setActiveAlbumId] = useState(prototypeCatalog.albums[0]?.id ?? '');
   const [visiblePageIndex, setVisiblePageIndex] = useState(0);
 
   const selectedCategoryMeta = categories.find((category) => category.id === selectedCategory) ?? categories[0];
-  const filteredAlbums = sortByNewest(
-    selectedCategory === 'all'
-      ? albums
-      : albums.filter((album) => album.categories.includes(selectedCategory)),
-  );
+  const filteredAlbums = selectAlbums(prototypeCatalog, selectedCategory);
   const visibleAlbums = filteredAlbums.slice(visiblePageIndex * 8, visiblePageIndex * 8 + 8);
 
-  const activateAlbum = (albumId) => {
+  const activateAlbum = (albumId: string) => {
     const albumIndex = filteredAlbums.findIndex((album) => album.id === albumId);
     if (albumIndex === -1) {
       return;
@@ -283,10 +169,8 @@ function DiscographyPage({ onOpenDiscography, onOpenHomeSection }) {
     setVisiblePageIndex(Math.floor(albumIndex / 8));
   };
 
-  const selectCategory = (categoryId) => {
-    const nextAlbums = sortByNewest(
-      categoryId === 'all' ? albums : albums.filter((album) => album.categories.includes(categoryId)),
-    );
+  const selectCategory = (categoryId: CategoryId) => {
+    const nextAlbums = selectAlbums(prototypeCatalog, categoryId);
 
     setSelectedCategory(categoryId);
     setVisiblePageIndex(0);
@@ -329,7 +213,7 @@ function DiscographyPage({ onOpenDiscography, onOpenHomeSection }) {
         <aside className="album-index" aria-label={`${selectedCategoryMeta.display} releases`}>
           <h1>{selectedCategoryMeta.display}</h1>
           <div className="album-index-rule" aria-hidden="true" />
-          <div className="album-list" tabIndex="0">
+          <div className="album-list" tabIndex={0}>
             {filteredAlbums.map((album) => (
               <a
                 className={`album-list-item${activeAlbumId === album.id ? ' is-active' : ''}`}
@@ -351,10 +235,10 @@ function DiscographyPage({ onOpenDiscography, onOpenHomeSection }) {
   );
 }
 
-function App() {
+function App({ locale, page }: { locale: Locale; page: SitePage }) {
+  const navigate = useNavigate();
   const [scale, setScale] = useState(() => Math.min(1, window.innerWidth / 1920));
-  const [route, setRoute] = useState(() => window.location.hash);
-  const isDiscographyPage = route === '#discography';
+  const isDiscographyPage = page === 'discography';
 
   useEffect(() => {
     const updateScale = () => setScale(Math.min(1, window.innerWidth / 1920));
@@ -363,22 +247,13 @@ function App() {
     return () => window.removeEventListener('resize', updateScale);
   }, []);
 
-  useEffect(() => {
-    const updateRoute = () => setRoute(window.location.hash);
-    window.addEventListener('hashchange', updateRoute);
-    return () => window.removeEventListener('hashchange', updateRoute);
-  }, []);
-
-  const openDiscography = (event) => {
-    event?.preventDefault();
-    window.history.pushState(null, '', '#discography');
-    setRoute('#discography');
+  const openDiscography = (event: NavigationEvent) => {
+    event.preventDefault();
+    void navigate(pagePath(locale, 'discography'));
   };
-
-  const openHomeSection = (event, targetHash) => {
-    event?.preventDefault();
-    window.history.pushState(null, '', targetHash || window.location.pathname);
-    setRoute(targetHash);
+  const openHomeSection = (event: NavigationEvent, targetHash: string) => {
+    event.preventDefault();
+    void navigate(targetHash === '#about' ? pagePath(locale, 'about') : pagePath(locale) + targetHash);
   };
 
   return (
@@ -389,7 +264,7 @@ function App() {
           '--scale': scale,
           width: `${1920 * scale}px`,
           height: `${1080 * scale}px`,
-        }}
+        } as CanvasStyle}
       >
         <section className={`design-canvas ${isDiscographyPage ? 'discography-canvas' : 'home-canvas'}`}>
           {isDiscographyPage
@@ -402,3 +277,4 @@ function App() {
 }
 
 export default App;
+

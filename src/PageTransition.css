@@ -1,0 +1,14 @@
+.page-transition {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  pointer-events: none;
+  background: #000;
+  animation: page-transition-wipe 760ms cubic-bezier(.76, 0, .24, 1) both;
+}
+
+@keyframes page-transition-wipe {
+  0% { transform: translateX(-100%); }
+  42% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}

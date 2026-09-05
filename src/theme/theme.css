@@ -1,0 +1,4 @@
+.site-theme { display: contents; --site-background: #f2f2f2; --site-ink: #323133; --site-body-ink: #000; --site-icon-filter: none; --site-color-scheme: light; --site-tile: #d9d9d9; }
+.site-theme[data-theme="dark"] { --site-background: #000; --site-ink: #fff; --site-body-ink: #fff; --site-icon-filter: invert(1) brightness(1.4); --site-color-scheme: dark; --site-tile: #222; }
+.about-viewport, .disc-viewport { color-scheme: var(--site-color-scheme); }
+.about-viewport, .disc-viewport, .about-page, .disc-page, .about-content { transition: background-color 180ms, color 180ms; }

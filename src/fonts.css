@@ -1,0 +1,4 @@
+@font-face { font-family: "Eudoxus Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("./assets/fonts/EudoxusSans-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Eudoxus Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("./assets/fonts/EudoxusSans-Medium.woff2") format("woff2"); }
+@font-face { font-family: "Eudoxus Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url("./assets/fonts/EudoxusSans-Bold.woff2") format("woff2"); }
+:root { --site-font: "Eudoxus Sans", "Noto Sans SC Variable", "Noto Sans", sans-serif; }

@@ -7,3 +7,6 @@ dist/
 !.env.example
 *.log
 .DS_Store
+
+# Local design mockups / handoff prototypes (kept local only)
+docs/

@@ -4,7 +4,7 @@
   --ink: #0c0c0c;
   --line: #6f6f6f;
   --tile: #d9d9d9;
-  font-family: "Eudoxus Sans", "Avenir Next", "Helvetica Neue", sans-serif;
+  font-family: var(--site-font);
   color: var(--ink);
   background: var(--paper);
   font-synthesis: none;
